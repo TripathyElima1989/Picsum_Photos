@@ -47,6 +47,9 @@ When the app loads, it fetches 30 images from the Picsum API.
 Images are displayed as thumbnails, and when clicked, they expand to fullscreen mode.
 You can toggle the fullscreen view by clicking on the image again.
 
+<img width="1728" alt="image" src="https://github.com/user-attachments/assets/6e1c704c-0596-4b9c-a452-585303038c28" />
+
+
 ## Acknowledgements
 Picsum Photos for providing free random images for the gallery.
 React for the framework used in this project.
