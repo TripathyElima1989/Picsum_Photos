@@ -94,23 +94,38 @@ class TestAPI extends React.Component {
           <h1> Picsum </h1> {/* Displaying the title "Picsum" */}
         </Header>
         
-        {/* TitleView displaying images in a grid layout */}
-        <TitleView spacing={60} minCellWidth={120}>
-          {this.state.images.map((image) => {
-            const isActive = this.state.currentPhotoId === image.id; // Check if the current image is active
-            return (
-              <Photo
-                key={image.id}
-                src={`https://picsum.photos/1000/1000?image=${image.id}`} // Image source from API
-                isActive={isActive} // Pass the active state as a prop
-                onClick={() =>
-                  // Toggle the active state when clicked
-                  this.setState({ currentPhotoId: isActive ? null : image.id })
-                }
-              />
-            );
-          })}
-        </TitleView>
+        // TitleView component with spacing and minimum cell width
+<TitleView spacing={60} minCellWidth={120}>
+  {
+    // Iterate over each image in the state
+    this.state.images.map((image) => {
+      // Determine if the current image is the active one based on the current photo ID
+      const isActive = this.state.currentPhotoId === image.id;
+
+      return (
+        // Render a Photo component for each image with a unique key (image.id)
+        <Photo
+          key={image.id} // Assign a unique key for React rendering efficiency
+          
+          // Set the image source dynamically based on the image ID
+          src={`https://picsum.photos/1000/1000?image=${image.id}`} // URL to fetch the image from picsum.photos using image.id
+          
+          // Pass the isActive state to the Photo component to track if this image is currently active
+          isActive={isActive} // Boolean value indicating whether this image is active
+          
+          // Define the click behavior for each image
+          onClick={() =>
+            // When the image is clicked, toggle the active state
+            this.setState({ currentPhotoId: isActive ? null : image.id })
+            // If the image is already active, set currentPhotoId to null (deactivate it)
+            // If the image is not active, set currentPhotoId to the image's ID (activate it)
+          }
+        />
+      );
+    })
+  }
+</TitleView>
+
         
         {/* Frame displayed when an image is active */}
         {this.state.currentPhotoId !== null && <Frame />} {/* Show frame when an image is selected */}
